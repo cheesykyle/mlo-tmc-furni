@@ -75,9 +75,10 @@ function getObjects(result, item, roomNumber, checkPortals) {
     var doors = [];
     if (checkPortals) {
         for (portal in result.CMapTypes.archetypes[0].Item[item].portals[0].Item) {
-            if (result.CMapTypes.archetypes[0].Item[item].portals[0].Item[portal].attachedObjects[0].length > 0) {
-                doors = doors.concat((result.CMapTypes.archetypes[0].Item[item].portals[0].Item[portal].attachedObjects[0]).match(/\d+/g))
-                objectsToFind = objectsToFind.concat((result.CMapTypes.archetypes[0].Item[item].portals[0].Item[portal].attachedObjects[0]).match(/\d+/g))
+            var portalObjects = result.CMapTypes.archetypes[0].Item[item].portals[0].Item[portal].attachedObjects[0]
+            if (portalObjects > 0) {
+                doors = doors.concat(portalObjects.match(/\d+/g))
+                objectsToFind = objectsToFind.concat(portalObjects.match(/\d+/g))
             }
         }
     }
